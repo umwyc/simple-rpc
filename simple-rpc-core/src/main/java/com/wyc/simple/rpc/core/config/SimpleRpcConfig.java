@@ -4,12 +4,18 @@ import com.wyc.simple.rpc.core.loadbalancer.constant.LoadBalancerKeys;
 import com.wyc.simple.rpc.core.retry.constant.RetryStrategyKeys;
 import com.wyc.simple.rpc.core.serializer.constant.SerializerKeys;
 import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Rpc框架全局配置类
  */
 @Data
+@Configuration
+@ConfigurationProperties(prefix = SimpleRpcConfig.PREFIX)
 public class SimpleRpcConfig {
+
+    public static final String PREFIX = "simple-rpc";
 
     /**
      * 名称
