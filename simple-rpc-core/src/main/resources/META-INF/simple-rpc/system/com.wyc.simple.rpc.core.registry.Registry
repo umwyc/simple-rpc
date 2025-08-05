@@ -1,0 +1,2 @@
+etcd=com.wyc.simple.rpc.core.registry.impl.EtcdRegistryCenter
+zookeeper=com.wyc.simple.rpc.core.registry.impl.ZooKeeperRegistryCenter

@@ -1,0 +1,4 @@
+jdk=com.wyc.simple.rpc.core.serializer.impl.JdkSerializer
+json=com.wyc.simple.rpc.core.serializer.impl.JsonSerializer
+kryo=com.wyc.simple.rpc.core.serializer.impl.KryoSerializer
+hessian=com.wyc.simple.rpc.core.serializer.impl.HessianSerializer

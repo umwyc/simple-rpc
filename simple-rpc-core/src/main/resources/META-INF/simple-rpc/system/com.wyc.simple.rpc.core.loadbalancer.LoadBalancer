@@ -1,0 +1,3 @@
+random=com.wyc.simple.rpc.core.loadbalancer.impl.RandomLoadBalancer
+roundRobin=com.wyc.simple.rpc.core.loadbalancer.impl.RoundRobinLoadBalancer
+consistentHash=com.wyc.simple.rpc.core.loadbalancer.impl.ConsistentHashLoadBalancer

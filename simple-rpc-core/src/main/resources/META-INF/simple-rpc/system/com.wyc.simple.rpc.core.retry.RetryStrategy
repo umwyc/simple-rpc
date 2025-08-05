@@ -1,0 +1,2 @@
+no=com.wyc.simple.rpc.core.retry.impl.NoRetryStrategy
+fixedInterval=com.wyc.simple.rpc.core.retry.impl.FixedIntervalRetryStrategy
