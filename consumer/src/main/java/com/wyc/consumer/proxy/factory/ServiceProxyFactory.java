@@ -1,4 +1,7 @@
-package com.wyc.consumer.proxy;
+package com.wyc.consumer.proxy.factory;
+
+import com.wyc.consumer.proxy.proxy.HttpServiceProxy;
+import com.wyc.consumer.proxy.proxy.SimpleRpcServiceProxy;
 
 import java.lang.reflect.Proxy;
 

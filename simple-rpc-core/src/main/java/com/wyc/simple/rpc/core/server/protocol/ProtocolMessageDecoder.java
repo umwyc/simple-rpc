@@ -64,7 +64,7 @@ public class ProtocolMessageDecoder {
                 SimpleRpcResponse simpleRpcResponse = serializer.deserialize(bodyBytes, SimpleRpcResponse.class);
                 yield new SimpleRpcProtocolMessage<>(header, simpleRpcResponse);
             }
-            default -> throw new RuntimeException("暂不支持该消息类型");
+            default -> throw new RuntimeException("[ProtocolMessageDecoder 暂不支持该消息类型]");
         };
     }
 }

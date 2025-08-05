@@ -1,0 +1,14 @@
+simple-rpc:
+  name: simple-rpc
+  version: 1.0.0
+  host: localhost
+  port: 8080
+  serializer: kryo
+  registryCenterConfig:
+    registry: etcd
+    address: http://localhost:2379
+    username:
+    password:
+    timeout:
+#  loadBalancer: consistentHash
+#  retryStrategy: no

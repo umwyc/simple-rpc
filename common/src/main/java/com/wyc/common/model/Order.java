@@ -3,19 +3,13 @@ package com.wyc.common.model;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-
-/**
- * 用户
- */
 @Data
 @Accessors(chain = true)
-public class User implements Serializable {
+public class Order {
 
     private String id;
 
-    private String name;
+    private String orderSn;
 
-    private String email;
-
+    private String userId;
 }

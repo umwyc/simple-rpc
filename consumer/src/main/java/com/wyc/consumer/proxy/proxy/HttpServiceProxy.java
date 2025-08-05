@@ -1,4 +1,4 @@
-package com.wyc.consumer.proxy;
+package com.wyc.consumer.proxy.proxy;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.http.HttpRequest;

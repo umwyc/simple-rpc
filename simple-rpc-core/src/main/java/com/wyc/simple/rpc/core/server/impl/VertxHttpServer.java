@@ -20,9 +20,9 @@ public class VertxHttpServer implements Server {
         // 启动服务器并监听端口
         httpServer.listen(port, result->{
            if(result.succeeded()) {
-               System.out.println("[Vertx HttpServer is listening on port " + port + " ]");
+               System.out.println("[VertxHttpServer is listening on port " + port + " ]");
            }else {
-               System.err.println("[Vertx HttpServer Failed to listen on port " + port + " ]");
+               System.err.println("[VertxHttpServer Failed to listen on port " + port + " ]");
            }
         });
     }

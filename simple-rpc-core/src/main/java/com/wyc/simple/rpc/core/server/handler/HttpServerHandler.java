@@ -60,9 +60,8 @@ public class HttpServerHandler implements Handler<HttpServerRequest> {
                 String methodName = simpleRpcRequest.getMethodName();
                 Class<?>[] parameterTypes = simpleRpcRequest.getParameterTypes();
                 Object[] args = simpleRpcRequest.getArgs();
-                // 查询本地缓存
+                // 查询本地服务 并调用本地方法
                 Class<?> serviceClass = LocalServiceCache.get(serviceName);
-                // 调用本地方法
                 Method method = serviceClass.getMethod(methodName, parameterTypes);
                 Object object = method.invoke(serviceClass.getConstructor().newInstance(), args);
                 simpleRpcResponse.setData(object);

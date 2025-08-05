@@ -17,7 +17,7 @@ public class ProtocolMessageEncoder {
 
     public static Buffer encode(SimpleRpcProtocolMessage<?> simpleRpcProtocolMessage) throws IOException {
         if(simpleRpcProtocolMessage == null || simpleRpcProtocolMessage.getHeader() == null){
-            log.warn("[ProtocolMessageEncoder 消息编码器: SimpleRpcProtocolMessage为空或者其Header为空 details:{}]"
+            log.warn("[ProtocolMessageEncoder 消息编码器: SimpleRpcProtocolMessage 为空或者 Header 为空 details:{}]"
                     , JSON.toJSONString(simpleRpcProtocolMessage));
             return Buffer.buffer();
         }

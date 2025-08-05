@@ -1,7 +1,9 @@
 package com.wyc.provider;
 
 import com.alibaba.fastjson.JSON;
+import com.wyc.common.service.OrderService;
 import com.wyc.common.service.UserService;
+import com.wyc.provider.impl.OrderServiceImpl;
 import com.wyc.simple.rpc.core.SimpleRpcApplication;
 import com.wyc.simple.rpc.core.config.RegistryCenterConfig;
 import com.wyc.simple.rpc.core.config.SimpleRpcConfig;
@@ -25,19 +27,30 @@ public class HttpProvider {
 
         // 缓存本地服务
         LocalServiceCache.register(UserService.class.getName(), UserServiceImpl.class);
+        LocalServiceCache.register(OrderService.class.getName(), OrderServiceImpl.class);
 
         // 推送服务至注册中心
-        String userServiceName = UserService.class.getName();
         SimpleRpcConfig simpleRpcConfig = SimpleRpcApplication.getSimpleRpcConfig();
         RegistryCenterConfig registryCenterConfig = simpleRpcConfig.getRegistryCenterConfig();
         RegistryCenter registryCenter = RegistryCenterFactory.getInstance(registryCenterConfig.getRegistry());
-        ServiceMetaInfo serviceMetaInfo = new ServiceMetaInfo();
-        serviceMetaInfo.setServiceName(userServiceName);
-        serviceMetaInfo.setServiceVersion(simpleRpcConfig.getVersion());
-        serviceMetaInfo.setServiceHost(simpleRpcConfig.getServerHost());
-        serviceMetaInfo.setServicePort(simpleRpcConfig.getServerPort());
+
+        ServiceMetaInfo userServiceMetaInfo = new ServiceMetaInfo();
+        String userServiceName = UserService.class.getName();
+        userServiceMetaInfo.setServiceName(userServiceName);
+        userServiceMetaInfo.setServiceVersion(simpleRpcConfig.getVersion());
+        userServiceMetaInfo.setServiceHost(simpleRpcConfig.getServerHost());
+        userServiceMetaInfo.setServicePort(simpleRpcConfig.getServerPort());
+
+        ServiceMetaInfo orderServiceMetaInfo = new ServiceMetaInfo();
+        String orderServiceName = OrderService.class.getName();
+        orderServiceMetaInfo.setServiceName(orderServiceName);
+        orderServiceMetaInfo.setServiceVersion(simpleRpcConfig.getVersion());
+        orderServiceMetaInfo.setServiceHost(simpleRpcConfig.getServerHost());
+        orderServiceMetaInfo.setServicePort(simpleRpcConfig.getServerPort());
+
         try {
-            registryCenter.register(serviceMetaInfo);
+            registryCenter.register(userServiceMetaInfo);
+            registryCenter.register(orderServiceMetaInfo);
         } catch (Exception e) {
             log.error("[HttpProvider 推送服务至注册中心失败 details:{}]", JSON.toJSONString(e));
             throw new RuntimeException(e);

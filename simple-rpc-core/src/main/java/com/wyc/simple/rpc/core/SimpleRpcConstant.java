@@ -14,4 +14,14 @@ public interface SimpleRpcConstant {
      * 默认服务版本
      */
     public static String DEFAULT_SERVICE_VERSION = "1.0.0";
+
+    /**
+     * 默认负载均衡器
+     */
+    public static String DEFAULT_LOAD_BALANCER = "roundRobin";
+
+    /**
+     * 默认重试机制
+     */
+    public static String DEFAULT_RETRY_STRATEGY = "no";
 }

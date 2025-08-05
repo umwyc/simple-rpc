@@ -22,7 +22,7 @@ public class SimpleRpcApplication {
     public static void init(SimpleRpcConfig newSimpleRpcConfig){
         simpleRpcConfig = newSimpleRpcConfig;
         // 更新配置的时候记录记录日志
-        log.info("[simple-simple-rpc init, config = {}]", JSON.toJSONString(simpleRpcConfig));
+        log.info("[simple-rpc init, config = {}]", JSON.toJSONString(simpleRpcConfig));
         // 注册中心初始化
         RegistryCenterConfig registryCenterConfig = simpleRpcConfig.getRegistryCenterConfig();
         RegistryCenter registryCenter = RegistryCenterFactory.getInstance(registryCenterConfig.getRegistry());
@@ -38,19 +38,18 @@ public class SimpleRpcApplication {
     public static void init(){
         SimpleRpcConfig newSimpleRpcConfig;
         try {
-            // 从 application.yaml 文件中读取 simple-simple-rpc 配置
+            // 从 application.yaml 文件中读取 simple-rpc 配置
             newSimpleRpcConfig = ConfigUtil.loadConfig(SimpleRpcConstant.DEFAULT_CONFIG_PREFIX, SimpleRpcConfig.class);
         } catch (Exception e) {
             // 读取失败，走兜底逻辑
-            log.error("[simple-simple-rpc init failed, error = {}]", JSON.toJSONString(e));
+            log.error("[simple-rpc init failed, error = {}]", JSON.toJSONString(e));
             newSimpleRpcConfig = new SimpleRpcConfig();
         }
         init(newSimpleRpcConfig);
     }
 
     /**
-     * 获取 simple-simple-rpc 配置
-     *
+     * 获取 simple-rpc 配置
      * @return
      */
     public static SimpleRpcConfig getSimpleRpcConfig(){

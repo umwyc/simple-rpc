@@ -10,52 +10,45 @@ import io.vertx.core.parsetools.RecordParser;
  */
 public class SimpleRpcBufferHandlerWrapper implements Handler<Buffer> {
 
-    private final RecordParser recordParser;
+    private RecordParser parser;
 
     public SimpleRpcBufferHandlerWrapper(Handler<Buffer> handler) {
-        recordParser = initRecordParser(handler);
+        parser = getEnhancedRecordParser(handler);
     }
 
-    @Override
-    public void handle(Buffer buffer) {
-        recordParser.handle(buffer);
-    }
+    private RecordParser getEnhancedRecordParser(Handler<Buffer> handler) {
 
-    /**
-     * 使用装饰者模式对原有的实例进行增强
-     * @param handler
-     * @return
-     */
-    private RecordParser initRecordParser(Handler<Buffer> handler) {
-        // 初始化解析器
-        RecordParser parser = RecordParser.newFixed(SimpleRpcProtocolConstant.MESSAGE_HEADER_LENGTH);
+        parser = RecordParser.newFixed(SimpleRpcProtocolConstant.MESSAGE_HEADER_LENGTH);
 
-        // 设置处理器
         parser.setOutput(new Handler<Buffer>() {
             int size = -1;
-            Buffer resultBuffer = Buffer.buffer();
+            Buffer result = Buffer.buffer();
 
             @Override
             public void handle(Buffer buffer) {
-                if(size == -1){
-                    // 读取消息体的长度
-                    size = buffer.getInt(13);
+                if (size == -1) {
+                    // 获取请求体长度
+                    size = buffer.getInt(SimpleRpcProtocolConstant.BODY_LENGTH_OFFSET);
                     parser.fixedSizeMode(size);
-                    // 读取消息头
-                    resultBuffer.appendBuffer(buffer);
+                    // 读取请求头
+                    result.appendBuffer(buffer);
                 } else {
-                    // 读取消息体
-                    resultBuffer.appendBuffer(buffer);
-                    // 已拼接为完整的Buffer，执行处理
-                    handler.handle(resultBuffer);
-                    // 重置一轮
-                    parser.fixedSizeMode(SimpleRpcProtocolConstant.MESSAGE_HEADER_LENGTH);
+                    // 读取请求体
+                    result.appendBuffer(buffer);
+                    // 截断消息
+                    handler.handle(result);
+                    // 重制一轮
                     size = -1;
-                    resultBuffer = Buffer.buffer();
+                    result = Buffer.buffer();
                 }
             }
         });
 
         return parser;
+    }
+
+    @Override
+    public void handle(Buffer buffer) {
+        parser.handle(buffer);
     }
 }

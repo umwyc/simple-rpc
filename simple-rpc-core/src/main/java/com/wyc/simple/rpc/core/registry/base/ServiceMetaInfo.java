@@ -9,7 +9,6 @@ import lombok.Data;
 @Data
 public class ServiceMetaInfo {
 
-
     /**
      * 服务名称
      */

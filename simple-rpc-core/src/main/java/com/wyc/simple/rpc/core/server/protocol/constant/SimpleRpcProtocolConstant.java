@@ -15,5 +15,10 @@ public interface SimpleRpcProtocolConstant {
     /**
      * 协议版本
      */
-    byte PROTOCOL_VERSION = 0x1;
+    byte PROTOCOL_VERSION = 0x23;
+
+    /**
+     * 协议消息体长度在协议消息头中的偏移量
+     */
+    int BODY_LENGTH_OFFSET = 13;
 }

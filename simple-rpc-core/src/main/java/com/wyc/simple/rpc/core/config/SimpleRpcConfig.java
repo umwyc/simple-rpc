@@ -14,12 +14,12 @@ public class SimpleRpcConfig {
     /**
      * 名称
      */
-    private String name = "simple-simple-rpc";
+    private String name = "simple-rpc";
 
     /**
      * 版本号
      */
-    private String version = "1.0";
+    private String version = "1.0.0";
 
     /**
      * 服务器的主机名

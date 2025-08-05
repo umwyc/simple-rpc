@@ -1,4 +1,4 @@
-package com.wyc.consumer.proxy;
+package com.wyc.consumer.proxy.proxy;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.IdUtil;
@@ -116,11 +116,15 @@ public class SimpleRpcServiceProxy implements InvocationHandler {
 
         // 客户端发送请求
         SimpleRpcResponse simpleRpcResponse = retryStrategy.retry(() -> {
+
             CompletableFuture<SimpleRpcResponse> responseFuture = new CompletableFuture<>();
+
             netClient.connect(selectedServiceMetaInfo.getServicePort(), selectedServiceMetaInfo.getServiceHost(), result -> {
                 if (result.succeeded()) {
                     log.info("[SimpleRpcServiceProxy 客户端连接 {} 主机成功]", serviceMetaInfo.getServiceAddress());
+
                     NetSocket socket = result.result();
+
                     try {
                         socket.write(ProtocolMessageEncoder.encode(simpleRpcProtocolMessageRequest));
                     } catch (IOException e) {

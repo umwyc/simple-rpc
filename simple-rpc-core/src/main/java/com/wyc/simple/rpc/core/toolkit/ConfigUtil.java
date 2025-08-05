@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 import java.util.Map;
 
 /**
- * 配置工具类，负责从application.properties文件中加载配置信息
+ * 配置工具类，负责从 application.yaml 或者 application.properties文件中加载配置信息
  */
 @Slf4j
 public class ConfigUtil {

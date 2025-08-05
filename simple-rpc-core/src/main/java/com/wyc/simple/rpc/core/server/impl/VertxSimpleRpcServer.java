@@ -22,9 +22,9 @@ public class VertxSimpleRpcServer implements Server {
         // 启动服务器并监听端口
         netServer.listen(port, result -> {
             if (result.succeeded()) {
-                System.out.println("Server is listening on port " + port);
+                System.out.println("VertxSimpleRpcServer is listening on port " + port);
             }else{
-                System.out.println("Failed to listen on port " + port);
+                System.out.println("VertxSimpleRpcServer Failed to listen on port " + port);
             }
         });
     }

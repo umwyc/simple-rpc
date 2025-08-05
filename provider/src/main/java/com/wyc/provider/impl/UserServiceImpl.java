@@ -7,9 +7,21 @@ import com.wyc.common.service.UserService;
  * 实现UserService接口
  */
 public class UserServiceImpl implements UserService {
+
     @Override
-    public User getUser(User user) {
-        System.out.println("[User Name: "  + user.getName() + " ]");
-        return user;
+    public User queryUserById(String id) {
+        return new User()
+                .setId("10086")
+                .setName("orangeee")
+                .setEmail("orangeee@qq.com");
+
+    }
+
+    @Override
+    public User queryUserByUsername(String username) {
+        return new User()
+                .setId("12345")
+                .setEmail("bigorange")
+                .setEmail("bigorange@qq.com");
     }
 }

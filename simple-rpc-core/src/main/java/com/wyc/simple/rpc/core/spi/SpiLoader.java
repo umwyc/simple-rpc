@@ -1,7 +1,9 @@
 package com.wyc.simple.rpc.core.spi;
 
 import cn.hutool.core.io.resource.ResourceUtil;
+import com.wyc.simple.rpc.core.loadbalancer.LoadBalancer;
 import com.wyc.simple.rpc.core.registry.RegistryCenter;
+import com.wyc.simple.rpc.core.retry.RetryStrategy;
 import com.wyc.simple.rpc.core.serializer.Serializer;
 import lombok.extern.slf4j.Slf4j;
 
@@ -44,7 +46,10 @@ public class SpiLoader {
     /**
      * 动态加载类列表
      */
-    private static final List<Class<?>> DYNAMIC_CLASS_LOAD_LIST = Arrays.asList(Serializer.class, RegistryCenter.class);
+    private static final List<Class<?>> DYNAMIC_CLASS_LOAD_LIST = Arrays.asList(Serializer.class
+            , RegistryCenter.class
+            , LoadBalancer.class
+            , RetryStrategy.class);
 
     /**
      * 加载所有类型
