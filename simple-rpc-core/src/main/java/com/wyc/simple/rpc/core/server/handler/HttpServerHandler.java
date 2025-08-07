@@ -38,7 +38,6 @@ public class HttpServerHandler implements Handler<HttpServerRequest> {
 
         // 处理请求体
         httpRequest.bodyHandler(body -> {
-
             byte[] bytes = body.getBytes();
             SimpleRpcRequest simpleRpcRequest = null;
             try {
@@ -56,15 +55,28 @@ public class HttpServerHandler implements Handler<HttpServerRequest> {
             }
 
             try {
+                // 查询本地服务
                 String serviceName = simpleRpcRequest.getServiceName();
+                Object serviceInstance = LocalServiceCache.getBean(serviceName);
+                if (serviceInstance == null) {
+                    Class<?> serviceClass = LocalServiceCache.getClass(serviceName);
+                    if (serviceClass != null) {
+                        serviceInstance = serviceClass.getConstructor().newInstance();
+                    }
+                }
+                if (serviceInstance == null) {
+                    throw new RuntimeException("【SimpleRpcServerHandler 无法找到服务: " + serviceName + " ]");
+                }
+
+                // 调用单例服务对象方法
                 String methodName = simpleRpcRequest.getMethodName();
                 Class<?>[] parameterTypes = simpleRpcRequest.getParameterTypes();
                 Object[] args = simpleRpcRequest.getArgs();
-                // 查询本地服务 并调用本地方法
-                Class<?> serviceClass = LocalServiceCache.get(serviceName);
-                Method method = serviceClass.getMethod(methodName, parameterTypes);
-                Object object = method.invoke(serviceClass.getConstructor().newInstance(), args);
-                simpleRpcResponse.setData(object);
+                Method method = serviceInstance.getClass().getMethod(methodName, parameterTypes);
+                Object resultData = method.invoke(serviceInstance, args);
+
+                // 设置 rpc 响应
+                simpleRpcResponse.setData(resultData);
                 simpleRpcResponse.setDataType(method.getReturnType());
                 simpleRpcResponse.setMessage("ok");
             } catch (Exception e) {

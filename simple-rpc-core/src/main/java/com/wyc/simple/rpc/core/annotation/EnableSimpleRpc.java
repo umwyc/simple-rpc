@@ -15,6 +15,6 @@ import java.lang.annotation.Target;
 @Import({SimpleRpcInitAutoConfig.class, SimpleRpcProviderAutoConfig.class, SimpleRpcConsumerAutoConfig.class})
 public @interface EnableSimpleRpc {
 
-    String protocol() default "simple-rpc";
+    String value() default "http";
 
 }

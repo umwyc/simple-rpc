@@ -1,8 +1,8 @@
 simple-rpc:
 #  name: simple-rpc
 #  version: 1.0.0
-#  host: localhost
-#  port: 8080
+#  server-host: localhost
+#  server-port: 8080
   serializer: kryo
   registryCenterConfig:
     registry: etcd

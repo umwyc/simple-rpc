@@ -36,22 +36,37 @@ public class SimpleRpcServerHandler implements Handler<NetSocket> {
             } catch (IOException e) {
                 throw new RuntimeException("[SimpleRpcServerHandler 解析协议失败]");
             }
-            SimpleRpcRequest simpleRpcRequest = simpleRpcProtocolMessageRequest.getBody();
 
-            // 查询本地服务 并调用本地方法
+            SimpleRpcRequest simpleRpcRequest = simpleRpcProtocolMessageRequest.getBody();
             boolean isSuccess = true;
-            String serviceName = simpleRpcRequest.getServiceName();
-            Class<?> implClass = LocalServiceCache.get(serviceName);
             SimpleRpcResponse simpleRpcResponse = new SimpleRpcResponse();
             try {
-                Method method = implClass.getMethod(simpleRpcRequest.getMethodName(), simpleRpcRequest.getParameterTypes());
-                Object object = method.invoke(implClass.getConstructor().newInstance(), simpleRpcRequest.getArgs());
-                // 设置rpc响应
-                simpleRpcResponse.setData(object);
+                // 查询本地服务
+                String serviceName = simpleRpcRequest.getServiceName();
+                Object serviceInstance = LocalServiceCache.getBean(serviceName);
+                if (serviceInstance == null) {
+                    Class<?> serviceClass = LocalServiceCache.getClass(serviceName);
+                    if (serviceClass != null) {
+                        serviceInstance = serviceClass.getConstructor().newInstance();
+                    }
+                }
+                if (serviceInstance == null) {
+                    throw new RuntimeException("【SimpleRpcServerHandler 无法找到服务: " + serviceName + " ]");
+                }
+
+                // 调用单例服务对象方法
+                String methodName = simpleRpcRequest.getMethodName();
+                Class<?>[] parameterTypes = simpleRpcRequest.getParameterTypes();
+                Object[] args = simpleRpcRequest.getArgs();
+                Method method = serviceInstance.getClass().getMethod(methodName, parameterTypes);
+                Object resultData = method.invoke(serviceInstance, args);
+
+                // 设置 rpc 响应
+                simpleRpcResponse.setData(resultData);
                 simpleRpcResponse.setDataType(method.getReturnType());
                 simpleRpcResponse.setMessage("ok");
             } catch (Exception e) {
-                // 设置rpc响应
+                // 设置 rpc 响应
                 log.error("[SimpleRpcServerHandler 调用本地方法出错 detail:{}]",  JSON.toJSONString(e));
                 isSuccess = false;
                 simpleRpcResponse.setException(e);
@@ -72,7 +87,7 @@ public class SimpleRpcServerHandler implements Handler<NetSocket> {
             simpleRpcProtocolMessageResponse.setBody(simpleRpcResponse);
 
             try {
-                // 编码
+                // 编码并发送
                 Buffer responseBuffer = ProtocolMessageEncoder.encode(simpleRpcProtocolMessageResponse);
                 socket.write(responseBuffer);
             } catch (IOException e) {

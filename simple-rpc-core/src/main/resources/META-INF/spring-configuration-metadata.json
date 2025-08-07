@@ -1,0 +1,86 @@
+{
+  "groups": [
+    {
+      "name": "simple-rpc",
+      "type": "com.wyc.simple.rpc.core.config.SimpleRpcConfig",
+      "sourceType": "com.wyc.simple.rpc.core.config.SimpleRpcConfig"
+    },
+    {
+      "name": "simple-rpc.registry-center-config",
+      "type": "com.wyc.simple.rpc.core.config.RegistryCenterConfig",
+      "sourceType": "com.wyc.simple.rpc.core.config.SimpleRpcConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "simple-rpc.name",
+      "type": "java.lang.String",
+      "description": "RPC框架命名空间",
+      "defaultValue": "simple-rpc"
+    },
+    {
+      "name": "simple-rpc.version",
+      "type": "java.lang.String",
+      "description": "RPC框架版本",
+      "defaultValue": "1.0.0"
+    },
+    {
+      "name": "simple-rpc.server-host",
+      "type": "java.lang.String",
+      "description": "服务器主机名",
+      "defaultValue": "localhost"
+    },
+    {
+      "name": "simple-rpc.server-port",
+      "type": "java.lang.Integer",
+      "description": "服务器端口号",
+      "defaultValue": 8080
+    },
+    {
+      "name": "simple-rpc.serializer",
+      "type": "java.lang.String",
+      "description": "序列化器类型",
+      "defaultValue": "jdk"
+    },
+    {
+      "name": "simple-rpc.load-balancer",
+      "type": "java.lang.String",
+      "description": "负载均衡器类型",
+      "defaultValue": "roundRobin"
+    },
+    {
+      "name": "simple-rpc.retry-strategy",
+      "type": "java.lang.String",
+      "description": "重试策略",
+      "defaultValue": "no"
+    },
+    {
+      "name": "simple-rpc.registry-center-config.registry",
+      "type": "java.lang.String",
+      "description": "注册中心类型",
+      "defaultValue": "etcd"
+    },
+    {
+      "name": "simple-rpc.registry-center-config.address",
+      "type": "java.lang.String",
+      "description": "注册中心地址",
+      "defaultValue": "http://localhost:2379"
+    },
+    {
+      "name": "simple-rpc.registry-center-config.username",
+      "type": "java.lang.String",
+      "description": "注册中心用户名"
+    },
+    {
+      "name": "simple-rpc.registry-center-config.password",
+      "type": "java.lang.String",
+      "description": "注册中心密码"
+    },
+    {
+      "name": "simple-rpc.registry-center-config.timeout",
+      "type": "java.lang.Long",
+      "description": "注册中心超时时间(毫秒)",
+      "defaultValue": 10000
+    }
+  ]
+}

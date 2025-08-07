@@ -3,13 +3,10 @@ package com.wyc.consumer.proxy;
 import com.wyc.common.service.OrderService;
 import com.wyc.common.service.UserService;
 import com.wyc.consumer.proxy.factory.ServiceProxyFactory;
-import com.wyc.simple.rpc.core.SimpleRpcApplication;
 
 public class Consumer {
 
     public static void main(String[] args) {
-        // 初始化 rpc 框架
-        SimpleRpcApplication.init();
 
         //
         boolean isHttp = true;

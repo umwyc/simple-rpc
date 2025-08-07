@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
  */
 @Data
 @ConfigurationProperties(prefix = RegistryCenterConfig.PREFIX)
-@Configuration
 public class RegistryCenterConfig {
 
     public static final String PREFIX = "simple-rpc.registry-center-config";

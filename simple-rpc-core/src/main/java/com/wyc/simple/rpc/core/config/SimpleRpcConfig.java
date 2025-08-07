@@ -11,14 +11,13 @@ import org.springframework.context.annotation.Configuration;
  * Rpc框架全局配置类
  */
 @Data
-@Configuration
 @ConfigurationProperties(prefix = SimpleRpcConfig.PREFIX)
 public class SimpleRpcConfig {
 
     public static final String PREFIX = "simple-rpc";
 
     /**
-     * 名称
+     * 命名空间
      */
     private String name = "simple-rpc";
 

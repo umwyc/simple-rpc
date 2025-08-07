@@ -1,2 +1,1 @@
-com.wyc.simple.rpc.core.config.SimpleRpcConfig
-com.wyc.simple.rpc.core.config.RegistryCenterConfig
+com.wyc.simple.rpc.core.SimpleRpcApplication

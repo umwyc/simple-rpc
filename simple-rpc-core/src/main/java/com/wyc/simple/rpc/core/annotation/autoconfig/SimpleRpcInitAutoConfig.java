@@ -27,9 +27,6 @@ public class SimpleRpcInitAutoConfig implements ImportBeanDefinitionRegistrar {
             throw new RuntimeException("[SimpleRpcBootstrapAutoConfig @EnableSimpleRpc 没有指定 protocol]");
         }
 
-        // 初始化 simple-rpc 框架配置
-        SimpleRpcApplication.init();
-
         // 启动服务器
         Server server = null;
         if (protocol.equals("simple-rpc")) {
