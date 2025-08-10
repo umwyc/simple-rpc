@@ -17,6 +17,11 @@ public class SimpleRpcConfig {
     public static final String PREFIX = "simple-rpc";
 
     /**
+     * 通信协议
+     */
+    private String protocol = "http";
+
+    /**
      * 命名空间
      */
     private String name = "simple-rpc";

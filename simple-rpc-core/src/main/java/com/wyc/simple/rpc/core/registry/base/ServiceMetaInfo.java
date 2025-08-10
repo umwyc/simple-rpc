@@ -1,12 +1,18 @@
 package com.wyc.simple.rpc.core.registry.base;
 
 import cn.hutool.core.util.StrUtil;
-import lombok.Data;
+import lombok.*;
+import lombok.experimental.Accessors;
 
 /**
  * 服务元信息（用于注册中心有关服务）
  */
 @Data
+@Builder
+@Accessors(chain = true)
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class ServiceMetaInfo {
 
     /**
@@ -18,11 +24,6 @@ public class ServiceMetaInfo {
      * 服务版本号（从 SimpleRpcConfig 中获取）
      */
     private String serviceVersion = "1.0.0";
-
-    /**
-     * 服务分组
-     */
-    private String serviceGroup = "default";
 
     /**
      * 服务域名

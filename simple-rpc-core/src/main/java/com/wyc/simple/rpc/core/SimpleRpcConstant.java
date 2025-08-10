@@ -5,6 +5,8 @@ package com.wyc.simple.rpc.core;
  */
 public interface SimpleRpcConstant {
 
+    public static String DEFAULT_PROTOCOL = "http";
+
     /**
      * 配置文件 application.yaml 加载前缀
      */

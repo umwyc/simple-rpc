@@ -13,6 +13,22 @@
   ],
   "properties": [
     {
+      "name": "simple-rpc.protocol",
+      "type": "java.lang.String",
+      "description": "RPC框架通信协议",
+      "defaultValue": "http",
+      "values": [
+        {
+          "value": "http",
+          "description": "使用HTTP协议进行通信"
+        },
+        {
+          "value": "simple-rpc",
+          "description": "使用Simple RPC自定义协议进行通信"
+        }
+      ]
+    },
+    {
       "name": "simple-rpc.name",
       "type": "java.lang.String",
       "description": "RPC框架命名空间",

@@ -19,16 +19,4 @@ public @interface SimpleRpcService {
      */
     Class<?> interfaceClass() default void.class;
 
-    /**
-     * 服务类
-     * @return
-     */
-    Class<?> serviceClass() default void.class;
-
-    /**
-     * 服务版本号
-     * @return
-     */
-    String serviceVersion() default SimpleRpcConstant.DEFAULT_SERVICE_VERSION;
-
 }

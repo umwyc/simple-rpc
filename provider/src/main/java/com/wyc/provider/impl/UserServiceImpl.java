@@ -22,8 +22,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User queryUserByUsername(String username) {
         return new User()
-                .setId("12345")
-                .setEmail("bigorange")
+                .setId("12306")
+                .setName("orangeee")
                 .setEmail("bigorange@qq.com");
     }
 }

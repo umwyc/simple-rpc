@@ -4,6 +4,7 @@ import com.wyc.common.model.Order;
 import com.wyc.common.service.OrderService;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,12 +14,13 @@ public class OrderServiceImpl implements OrderService {
     public Order queryOrderByOrderSn(String orderSn) {
         return new Order()
                 .setId("1")
-                .setOrderSn("xxx")
-                .setUserId("10086");
+                .setOrderSn("orangeeeOrderSn")
+                .setUserId("orangeee");
     }
 
     @Override
     public List<Order> queryOrderByUserId(Long userId) {
-        return Collections.singletonList(new Order().setId("2").setOrderSn("yyy").setUserId("12345"));
+        return Arrays.asList(new Order().setId("2").setOrderSn("appleeeOrderSn").setUserId("appleee")
+                , new Order().setId("3").setOrderSn("orangeeeOrderSn").setUserId("orangeee"));
     }
 }
