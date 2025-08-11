@@ -10,5 +10,5 @@ simple-rpc:
     username:
     password:
     timeout:
-  loadBalancer: consistentHash
+  loadBalancer: roundRobin
   retryStrategy: no

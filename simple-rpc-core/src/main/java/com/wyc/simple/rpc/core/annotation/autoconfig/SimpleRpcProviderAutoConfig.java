@@ -28,7 +28,7 @@ public class SimpleRpcProviderAutoConfig implements BeanPostProcessor {
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         SimpleRpcService simpleRpcService = bean.getClass().getAnnotation(SimpleRpcService.class);
         if (simpleRpcService != null) {
-            Class<?> interfaceClass = simpleRpcService.interfaceClass();
+            Class<?> interfaceClass = simpleRpcService.serviceClass();
             if (interfaceClass == null || interfaceClass == void.class) {
                 throw new RuntimeException("[SimpleRpcProviderAutoConfig interfaceClass非法]");
             }

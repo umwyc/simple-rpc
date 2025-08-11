@@ -2,12 +2,14 @@ package com.wyc.provider.impl;
 
 import com.wyc.common.model.User;
 import com.wyc.common.service.UserService;
+import com.wyc.simple.rpc.core.annotation.SimpleRpcService;
 import org.springframework.stereotype.Service;
 
 /**
  * 实现UserService接口
  */
 @Service
+@SimpleRpcService(serviceClass = UserService.class)
 public class UserServiceImpl implements UserService {
 
     @Override

@@ -1,6 +1,5 @@
 package com.wyc.simple.rpc.core.annotation;
 
-import com.wyc.simple.rpc.core.SimpleRpcConstant;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.ElementType;
@@ -17,6 +16,6 @@ public @interface SimpleRpcService {
      * 接口类
      * @return
      */
-    Class<?> interfaceClass() default void.class;
+    Class<?> serviceClass() default void.class;
 
 }

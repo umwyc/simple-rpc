@@ -1,4 +1,5 @@
 simple-rpc:
+  protocol: http
   name: simple-rpc
   version: 1.0.0
   server-host: localhost

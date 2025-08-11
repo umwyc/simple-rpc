@@ -55,7 +55,7 @@ public class SimpleRpcConsumerAutoConfig implements BeanPostProcessor {
                     log.error("[SimpleRpcConsumerAutoConfig 设置字段值失败 field={}, bean={}]", field.getName(), beanName, e);
                     throw new RuntimeException(e);
                 } catch (Exception e) {
-                    log.error("[SimpleRpcConsumerAutoConfig 创建代理对象失败 interfaceClass={}]", serviceClass.getName(), e);
+                    log.error("[SimpleRpcConsumerAutoConfig 创建代理对象失败 serviceClass={}]", serviceClass.getName(), e);
                     throw new RuntimeException(e);
                 }
             }

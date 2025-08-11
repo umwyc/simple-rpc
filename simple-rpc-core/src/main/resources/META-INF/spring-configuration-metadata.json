@@ -56,25 +56,77 @@
       "name": "simple-rpc.serializer",
       "type": "java.lang.String",
       "description": "序列化器类型",
-      "defaultValue": "jdk"
+      "defaultValue": "jdk",
+      "values": [
+        {
+          "value": "jdk",
+          "description": "使用JDK原生序列化"
+        },
+        {
+          "value": "json",
+          "description": "使用JSON序列化"
+        },
+        {
+          "value": "kryo",
+          "description": "使用Kryo序列化"
+        },
+        {
+          "value": "hessian",
+          "description": "使用Hessian序列化"
+        }
+      ]
     },
     {
       "name": "simple-rpc.load-balancer",
       "type": "java.lang.String",
       "description": "负载均衡器类型",
-      "defaultValue": "roundRobin"
+      "defaultValue": "roundRobin",
+      "values": [
+        {
+          "value": "roundRobin",
+          "description": "轮询负载均衡"
+        },
+        {
+          "value": "random",
+          "description": "随机负载均衡"
+        },
+        {
+          "value": "consistentHash",
+          "description": "一致性哈希负载均衡"
+        }
+      ]
     },
     {
       "name": "simple-rpc.retry-strategy",
       "type": "java.lang.String",
       "description": "重试策略",
-      "defaultValue": "no"
+      "defaultValue": "no",
+      "values": [
+        {
+          "value": "no",
+          "description": "不重试"
+        },
+        {
+          "value": "fixedInterval",
+          "description": "固定时间间隔重试"
+        }
+      ]
     },
     {
       "name": "simple-rpc.registry-center-config.registry",
       "type": "java.lang.String",
       "description": "注册中心类型",
-      "defaultValue": "etcd"
+      "defaultValue": "etcd",
+      "values": [
+        {
+          "value": "etcd",
+          "description": "使用Etcd作为注册中心"
+        },
+        {
+          "value": "zookeeper",
+          "description": "使用ZooKeeper作为注册中心"
+        }
+      ]
     },
     {
       "name": "simple-rpc.registry-center-config.address",
